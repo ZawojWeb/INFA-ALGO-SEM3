@@ -24,6 +24,6 @@ public class Add {
             }
         } while (corectName);
 
-        System.out.println("New task was correctly added: " +  newTask);
+        System.out.println("New task was correctly added: " +  newTask.replaceAll("_", " "));
     }
 }
