@@ -26,7 +26,7 @@ public class Remove {
             
         } while (removedAction);
 
-        System.out.println("Correctly removed task: " + taskToDelete.replaceAll(" ", "_") + "\n");
+        System.out.println("Correctly removed task: " + taskToDelete.replaceAll(" ", "_"));
 
     }
 }
