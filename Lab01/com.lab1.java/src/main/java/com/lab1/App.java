@@ -12,7 +12,7 @@ public class App
     
     public static void main( String[] args )
     {
-        Boolean runApp = true;
+        Boolean runApp =    true;
 
         System.out.println("Hello in your TODO list");
          do {
