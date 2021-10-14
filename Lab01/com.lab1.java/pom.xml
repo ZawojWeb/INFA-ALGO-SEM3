@@ -84,11 +84,16 @@
               <mainClass>com.lab1.App</mainClass>
           </configuration>
         </plugin>
-        <!-- <plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-pmd-plugin</artifactId>
           <version>3.13.0</version>
-        </plugin> -->
+        </plugin>
+        <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-checkstyle-plugin</artifactId>
+              <version>3.0.0</version>
+            </plugin>
       </plugins>
     </pluginManagement>
   </build>
@@ -104,6 +109,14 @@
                         <ruleset>/rulesets/java/naming.xml</ruleset>
                     </rulesets>
                 </configuration>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-checkstyle-plugin</artifactId>
+              <version>3.0.0</version>
+              <!-- <configuration>
+                  <configLocation>checkstyle.xml</configLocation>
+              </configuration> -->
             </plugin>
         </plugins>
     </reporting>
