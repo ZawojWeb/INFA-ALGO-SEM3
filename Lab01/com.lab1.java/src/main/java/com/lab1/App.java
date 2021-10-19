@@ -8,7 +8,7 @@ public class App {
     public static String option;
     public static Scanner in = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         Boolean runApp = true;
 
         System.out.println("Hello in your TODO list");
