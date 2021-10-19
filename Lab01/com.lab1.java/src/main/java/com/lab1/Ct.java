@@ -1,4 +1,5 @@
 package com.lab1;
+
 public class Ct {
 
     public int d(int a, int b) {
@@ -7,5 +8,4 @@ public class Ct {
         else
             return a / b;
     }
-}    
-
+}
