@@ -6,11 +6,10 @@ package com.lab1;
 import java.util.ArrayList;
 
 public class Add {
-    
     public static void addFunction( ArrayList<String> allTask){
-        
         String newTask = new String();
         Boolean corectName = true;
+        
         do {
             System.out.println("Add task, put the content and then click enter");
             System.out.print("> ");
