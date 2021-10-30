@@ -1,3 +1,6 @@
-# Devide with rest in maria
+# How it work
 
-!!! It isn't porpably the best solution of this but it work.
+First input is X secound Y and program devide with rest X:Y
+Output is:
+total
+rest
