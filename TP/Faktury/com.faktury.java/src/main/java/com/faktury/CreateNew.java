@@ -12,4 +12,13 @@ package com.faktury;
 
 public class CreateNew {
 
+    private CreateNew() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    public static void test() {
+        System.err.println("Create New Method");
+        Save.saveTest();
+
+    }
 }

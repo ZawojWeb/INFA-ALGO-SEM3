@@ -4,4 +4,9 @@ package com.faktury;
 
 public class Load {
 
+    public static void loadTest() {
+        System.err.println("Load test");
+        Save.saveTest();
+
+    }
 }
