@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.lab1.AppTest" time="0.041" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.lab1.AppTest" time="0.062" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1250"/>
-    <property name="java.class.path" value="C:\Programowanie\INFA-ALGO-SEM3\TP\Faktury\com.faktury.java\target\test-classes;C:\Programowanie\INFA-ALGO-SEM3\TP\Faktury\com.faktury.java\target\classes;C:\Users\zawoj\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\zawoj\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\zawoj\.m2\repository\de\codeshelf\consoleui\consoleui\0.0.13\consoleui-0.0.13.jar;C:\Users\zawoj\.m2\repository\org\fusesource\jansi\jansi\1.11\jansi-1.11.jar;C:\Users\zawoj\.m2\repository\jline\jline\2.14.6\jline-2.14.6.jar;"/>
+    <property name="java.class.path" value="C:\Programowanie\INFA-ALGO-SEM3\TP\Faktury\com.faktury.java\target\test-classes;C:\Programowanie\INFA-ALGO-SEM3\TP\Faktury\com.faktury.java\target\classes;C:\Users\zawoj\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\zawoj\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\zawoj\.m2\repository\de\codeshelf\consoleui\consoleui\0.0.13\consoleui-0.0.13.jar;C:\Users\zawoj\.m2\repository\org\fusesource\jansi\jansi\1.11\jansi-1.11.jar;C:\Users\zawoj\.m2\repository\jline\jline\2.14.6\jline-2.14.6.jar;C:\Users\zawoj\.m2\repository\com\googlecode\json-simple\json-simple\1.1.1\json-simple-1.1.1.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,9 +15,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="PL"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17\bin"/>
-    <property name="sun.java.command" value="C:\Users\zawoj\AppData\Local\Temp\surefire267967605991171266\surefirebooter4948213164927140299.jar C:\Users\zawoj\AppData\Local\Temp\surefire267967605991171266 2021-11-06T14-25-57_286-jvmRun1 surefire7853590867788453608tmp surefire_01474121195239884640tmp"/>
+    <property name="sun.java.command" value="C:\Users\zawoj\AppData\Local\Temp\surefire5718592269023800486\surefirebooter13023728509316796534.jar C:\Users\zawoj\AppData\Local\Temp\surefire5718592269023800486 2021-11-07T09-46-53_253-jvmRun1 surefire18429430788356669445tmp surefire_06214613912496677705tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Programowanie\INFA-ALGO-SEM3\TP\Faktury\com.faktury.java\target\test-classes;C:\Programowanie\INFA-ALGO-SEM3\TP\Faktury\com.faktury.java\target\classes;C:\Users\zawoj\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\zawoj\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\zawoj\.m2\repository\de\codeshelf\consoleui\consoleui\0.0.13\consoleui-0.0.13.jar;C:\Users\zawoj\.m2\repository\org\fusesource\jansi\jansi\1.11\jansi-1.11.jar;C:\Users\zawoj\.m2\repository\jline\jline\2.14.6\jline-2.14.6.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Programowanie\INFA-ALGO-SEM3\TP\Faktury\com.faktury.java\target\test-classes;C:\Programowanie\INFA-ALGO-SEM3\TP\Faktury\com.faktury.java\target\classes;C:\Users\zawoj\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\zawoj\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\zawoj\.m2\repository\de\codeshelf\consoleui\consoleui\0.0.13\consoleui-0.0.13.jar;C:\Users\zawoj\.m2\repository\org\fusesource\jansi\jansi\1.11\jansi-1.11.jar;C:\Users\zawoj\.m2\repository\jline\jline\2.14.6\jline-2.14.6.jar;C:\Users\zawoj\.m2\repository\com\googlecode\json-simple\json-simple\1.1.1\json-simple-1.1.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\zawoj"/>
     <property name="user.language" value="pl"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\zawoj\AppData\Local\Temp\surefire267967605991171266\surefirebooter4948213164927140299.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\zawoj\AppData\Local\Temp\surefire5718592269023800486\surefirebooter13023728509316796534.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17+35-LTS-2724"/>
@@ -56,5 +56,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="com.lab1.AppTest" time="0.001"/>
+  <testcase name="shouldAnswerWithTrue" classname="com.lab1.AppTest" time="0.002"/>
 </testsuite>

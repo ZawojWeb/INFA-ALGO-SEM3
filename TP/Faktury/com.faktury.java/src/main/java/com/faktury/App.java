@@ -26,7 +26,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class App {
 
     public static void main(final String[] args) {
-        AnsiConsole.systemInstall(); // #1
+        AnsiConsole.systemInstall();
         System.out.println(ansi().eraseScreen().render("Welcome in invoice generator."));
 
         try {
