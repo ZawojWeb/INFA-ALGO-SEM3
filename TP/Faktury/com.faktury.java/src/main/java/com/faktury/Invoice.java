@@ -1,6 +1,15 @@
 package com.faktury;
 
 import java.util.ArrayList;
+
+import javax.swing.filechooser.FileSystemView;
+import java.io.File;
+
+import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.pdfbox.text.PDFTextStripperByArea;
+import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
@@ -13,16 +22,18 @@ import org.beryx.textio.TextIoFactory;
 
 public class Invoice {
     static ArrayList<Item> items = new ArrayList<>();
+    static ArrayList<String> InvoiceListToLoad = new ArrayList<>();
     static String sellerName;
-    static String sellerNip;
+    static Integer sellerNip;
     static String sellerAdress;
     static String buyerName;
-    static String buyerNip;
+    static Integer buyerNip;
     static String buyerAdress;
     static String pdfName;
+    static double totalPriceOfAllItems;
 
-    private Invoice(ArrayList<Item> items, String sellerName, String sellerNip, String sellerAdress, String buyerName,
-            String buyerNip, String buyerAdress) {
+    private Invoice(ArrayList<Item> items, String sellerName, Integer sellerNip, String sellerAdress, String buyerName,
+            Integer buyerNip, String buyerAdress) {
         Invoice.items = items;
         Invoice.sellerName = sellerName;
         Invoice.sellerNip = sellerNip;
@@ -38,10 +49,10 @@ public class Invoice {
         TextIO textIO = TextIoFactory.getTextIO();
 
         sellerName = textIO.newStringInputReader().read("Seller comapny name");
-        sellerNip = textIO.newStringInputReader().read("Seller comapny NIP");
+        sellerNip = textIO.newIntInputReader().read("Seller comapny NIP");
         sellerAdress = textIO.newStringInputReader().read("Seller comapny adress");
         buyerName = textIO.newStringInputReader().read("Buyer comapny name");
-        buyerNip = textIO.newStringInputReader().read("Buyer comapny NIP");
+        buyerNip = textIO.newIntInputReader().read("Buyer comapny NIP");
         buyerAdress = textIO.newStringInputReader().read("Buyer comapny adress");
 
         String condition;
@@ -61,12 +72,15 @@ public class Invoice {
 
     }
 
-    public static void Save() {
+    public void Save() {
         Document document = new Document();
         try {
             TextIO textIO = TextIoFactory.getTextIO();
             pdfName = textIO.newStringInputReader().read("Name of invoice file");
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(pdfName + ".pdf"));
+            File home = FileSystemView.getFileSystemView().getHomeDirectory();
+
+            PdfWriter writer = PdfWriter.getInstance(document,
+                    new FileOutputStream(home.getAbsolutePath() + "/invoice/" + pdfName + "-" + buyerNip + ".pdf"));
             document.open();
 
             document.add(new Paragraph("Seller:"));
@@ -87,6 +101,7 @@ public class Invoice {
             for (Item item : items) {
                 document.add(new Paragraph(item.toString()));
             }
+            document.add(new Paragraph("Total price: " + totalPriceOfAllItems));
 
             document.close();
             writer.close();
@@ -96,6 +111,47 @@ public class Invoice {
             e.printStackTrace();
         }
         System.exit(0);
+    }
+
+    public static void Load(Integer NIP) throws IOException {
+        File home = FileSystemView.getFileSystemView().getHomeDirectory();
+        File folder = new File(home.getAbsoluteFile() + "/invoice/");
+        File[] listOfFiles = folder.listFiles();
+
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isFile() && listOfFiles[i].getName().contains(NIP.toString())) {
+                InvoiceListToLoad.add(listOfFiles[i].getName());
+            } else if (listOfFiles[i].isDirectory()) {
+                continue;
+            }
+        }
+        for (String file : InvoiceListToLoad) {
+            try (PDDocument document = Loader.loadPDF(new File(folder + "\\" + file))) {
+
+                document.getClass();
+
+                if (!document.isEncrypted()) {
+
+                    PDFTextStripperByArea stripper = new PDFTextStripperByArea();
+                    stripper.setSortByPosition(true);
+
+                    PDFTextStripper tStripper = new PDFTextStripper();
+
+                    String pdfFileInText = tStripper.getText(document);
+                    System.out.println("\n------------------------");
+
+                    // split by whitespace
+                    String lines[] = pdfFileInText.split("\\r?\\n");
+                    for (String line : lines) {
+                        System.out.println(line);
+                    }
+
+                }
+
+            }
+        }
+        System.exit(0);
+
     }
 
 }

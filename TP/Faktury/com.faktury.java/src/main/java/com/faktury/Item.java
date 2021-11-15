@@ -11,13 +11,14 @@ public class Item {
         this.name = name;
         this.qty = qty;
         this.price = price;
-        this.priceofTax = (qty * price * 0.27);
+        this.priceofTax = ((qty * price * 0.27) * 100.0) / 100;
         this.totalPrice = qty * price;
     }
 
     @Override
     public String toString() {
         return "Name: " + this.name + " Qty: " + this.qty + " Price for one: " + this.price + " The 23% of tax: "
-                + this.priceofTax + " Total Price " + this.totalPrice;
+                + this.priceofTax + " Total price for product: " + this.totalPrice;
     }
+
 }
