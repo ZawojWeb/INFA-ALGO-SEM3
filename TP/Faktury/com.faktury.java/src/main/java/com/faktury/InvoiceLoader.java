@@ -41,7 +41,6 @@ public class InvoiceLoader {
                     String pdfFileInText = tStripper.getText(document);
                     System.out.println("\n------------------------");
 
-                    // split by whitespace
                     String lines[] = pdfFileInText.split("\\r?\\n");
                     for (String line : lines) {
                         System.out.println(line);
