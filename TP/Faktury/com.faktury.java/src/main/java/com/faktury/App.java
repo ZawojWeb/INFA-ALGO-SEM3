@@ -22,30 +22,32 @@ public class App {
         System.out.println(ansi().eraseScreen().render("Welcome in invoice generator."));
 
         try {
-            ConsolePrompt prompt = new ConsolePrompt();
-            PromptBuilder promptBuilder = prompt.getPromptBuilder();
+            while (true) {
+                ConsolePrompt prompt = new ConsolePrompt();
+                PromptBuilder promptBuilder = prompt.getPromptBuilder();
 
-            promptBuilder.createListPrompt().name("whatToDo").message("What you want to do ").newItem("createNew")
-                    .text("Create New").add().newItem("load").text("Load").add().newItem("exit").text("Exit").add()
-                    .addPrompt();
+                promptBuilder.createListPrompt().name("whatToDo").message("What you want to do ").newItem("createNew")
+                        .text("Create New").add().newItem("load").text("Load").add().newItem("exit").text("Exit").add()
+                        .addPrompt();
 
-            HashMap<String, ? extends PromtResultItemIF> result = prompt.prompt(promptBuilder.build());
-            String choice = ((ListResult) result.get("whatToDo")).getSelectedId();
+                HashMap<String, ? extends PromtResultItemIF> result = prompt.prompt(promptBuilder.build());
+                String choice = ((ListResult) result.get("whatToDo")).getSelectedId();
 
-            switch (choice) {
-            case "createNew":
-                Invoice.createInvoice();
-                break;
-            case "load":
-                TextIO textIO = TextIoFactory.getTextIO();
-                Integer NIP = textIO.newIntInputReader().read("Put NIP wchih invoices you want to load");
-                Invoice.Load(NIP);
-                break;
-            case "exit":
-                System.exit(0);
-                break;
-            default:
-                break;
+                switch (choice) {
+                case "createNew":
+                    InvoiceCreator.createInvoice();
+                    break;
+                case "load":
+                    TextIO textIO = TextIoFactory.getTextIO();
+                    Integer NIP = textIO.newIntInputReader().read("Put NIP wchih invoices you want to load");
+                    InvoiceLoader.Load(NIP);
+                    break;
+                case "exit":
+                    System.exit(0);
+                    break;
+                default:
+                    break;
+                }
             }
 
         } catch (IOException e) {
