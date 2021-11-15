@@ -11,7 +11,7 @@ public class Item {
         this.name = name;
         this.qty = qty;
         this.price = price;
-        this.priceofTax = ((qty * price * 0.27) * 100.0) / 100.0;
+        this.priceofTax = calculateTax(qty, price);
         this.totalPrice = qty * price;
     }
 
@@ -19,6 +19,11 @@ public class Item {
     public String toString() {
         return "Name: " + this.name + " Qty: " + this.qty + " Price for one: " + this.price + " The 23% of tax: "
                 + this.priceofTax + " Total price for product: " + this.totalPrice;
+    }
+
+    public static double calculateTax(int qty, double price) {
+        return ((qty * price * 0.23) * 100.0) / 100.0;
+
     }
 
 }

@@ -35,7 +35,7 @@ public class InvoiceCreator {
             String itemPrice = textIO.newStringInputReader().read("Price per item");
             double itemPriceDouble = Double.parseDouble(itemPrice);
             items.add(new Item(itemName, itemQty, itemPriceDouble));
-            condition = textIO.newStringInputReader().read("Add next item y-yes");
+            condition = textIO.newStringInputReader().read("Add next item y-yes n-no");
 
         } while (condition.equals("y"));
 

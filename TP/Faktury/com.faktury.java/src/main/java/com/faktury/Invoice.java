@@ -13,7 +13,7 @@ public class Invoice {
     String pdfName;
     double totalPriceOfAllItems;
 
-    Invoice(ArrayList<Item> items, String sellerName, Integer sellerNip, String sellerAdress, String buyerName,
+    public Invoice(ArrayList<Item> items, String sellerName, Integer sellerNip, String sellerAdress, String buyerName,
             Integer buyerNip, String buyerAdress) {
         this.items = items;
         this.sellerName = sellerName;
