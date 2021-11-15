@@ -11,7 +11,7 @@ public class Item {
         this.name = name;
         this.qty = qty;
         this.price = price;
-        this.priceofTax = ((qty * price * 0.27) * 100.0) / 100;
+        this.priceofTax = ((qty * price * 0.27) * 100.0) / 100.0;
         this.totalPrice = qty * price;
     }
 
