@@ -1,12 +1,16 @@
 package com.faktury;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+
+import com.itextpdf.text.DocumentException;
 
 import org.beryx.textio.TextIO;
 import org.beryx.textio.TextIoFactory;
 
 public class InvoiceCreator {
     static ArrayList<Item> items = new ArrayList<>();
+    // public static ArrayList<Client> clients = new ArrayList<>();
     static String sellerName;
     static Integer sellerNip;
     static String sellerAdress;
@@ -16,7 +20,7 @@ public class InvoiceCreator {
     static String pdfName;
     static double totalPriceOfAllItems;
 
-    public static void createInvoice() {
+    public static void createInvoice() throws FileNotFoundException, DocumentException {
 
         TextIO textIO = TextIoFactory.getTextIO();
 
@@ -27,6 +31,8 @@ public class InvoiceCreator {
         buyerNip = textIO.newIntInputReader().read("Buyer comapny NIP");
         buyerAdress = textIO.newStringInputReader().read("Buyer comapny adress");
 
+        Client client = new Client(buyerName, buyerNip, buyerAdress);
+        ClientSaver.Saver(client, buyerNip);
         String condition;
         System.out.println("You have to add at least one product");
         do {

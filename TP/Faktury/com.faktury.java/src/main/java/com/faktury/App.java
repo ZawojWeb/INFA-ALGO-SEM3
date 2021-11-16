@@ -10,13 +10,15 @@ import org.fusesource.jansi.AnsiConsole;
 import java.io.IOException;
 import java.util.HashMap;
 
+import com.itextpdf.text.DocumentException;
+
 import static org.fusesource.jansi.Ansi.ansi;
 import org.beryx.textio.TextIO;
 import org.beryx.textio.TextIoFactory;
 
 public class App {
 
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws DocumentException {
         AnsiConsole.systemInstall();
         Folder.createFolder();
         System.out.println(ansi().eraseScreen().render("Welcome in invoice generator."));
@@ -28,7 +30,7 @@ public class App {
 
                 promptBuilder.createListPrompt().name("whatToDo").message("What you want to do ").newItem("createNew")
                         .text("Create New").add().newItem("load").text("Load").add().newItem("exit").text("Exit").add()
-                        .addPrompt();
+                        .newItem("loadClients").text("Load clients").add().addPrompt();
 
                 HashMap<String, ? extends PromtResultItemIF> result = prompt.prompt(promptBuilder.build());
                 String choice = ((ListResult) result.get("whatToDo")).getSelectedId();
@@ -41,6 +43,9 @@ public class App {
                     TextIO textIO = TextIoFactory.getTextIO();
                     Integer NIP = textIO.newIntInputReader().read("Put NIP wchih invoices you want to load");
                     InvoiceLoader.Load(NIP);
+                    break;
+                case "loadClients":
+                    ClientsLoader.Load();
                     break;
                 case "exit":
                     System.exit(0);
