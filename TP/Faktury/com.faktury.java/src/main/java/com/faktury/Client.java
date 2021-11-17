@@ -2,12 +2,12 @@ package com.faktury;
 
 public class Client {
     String buyerName;
-    Integer buyerNip;
+    Long buyerNip;
     String buyerAdress;
 
-    public Client(String buyerName, Integer buyerNip, String buyerAdress) {
+    public Client(String buyerName, Long buyerNip2, String buyerAdress) {
         this.buyerName = buyerName;
-        this.buyerNip = buyerNip;
+        this.buyerNip = buyerNip2;
         this.buyerAdress = buyerAdress;
     }
 

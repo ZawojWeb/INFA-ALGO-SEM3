@@ -12,10 +12,10 @@ public class InvoiceCreator {
     static ArrayList<Item> items = new ArrayList<>();
     // public static ArrayList<Client> clients = new ArrayList<>();
     static String sellerName;
-    static Integer sellerNip;
+    static Long sellerNip;
     static String sellerAdress;
     static String buyerName;
-    static Integer buyerNip;
+    static Long buyerNip;
     static String buyerAdress;
     static String pdfName;
     static double totalPriceOfAllItems;
@@ -25,10 +25,10 @@ public class InvoiceCreator {
         TextIO textIO = TextIoFactory.getTextIO();
 
         sellerName = textIO.newStringInputReader().read("Seller comapny name");
-        sellerNip = textIO.newIntInputReader().read("Seller comapny NIP");
+        sellerNip = textIO.newLongInputReader().read("Seller comapny NIP");
         sellerAdress = textIO.newStringInputReader().read("Seller comapny adress");
         buyerName = textIO.newStringInputReader().read("Buyer comapny name");
-        buyerNip = textIO.newIntInputReader().read("Buyer comapny NIP");
+        buyerNip = textIO.newLongInputReader().read("Buyer comapny NIP");
         buyerAdress = textIO.newStringInputReader().read("Buyer comapny adress");
 
         Client client = new Client(buyerName, buyerNip, buyerAdress);

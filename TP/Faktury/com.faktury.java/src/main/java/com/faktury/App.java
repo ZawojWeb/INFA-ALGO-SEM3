@@ -29,8 +29,8 @@ public class App {
                 PromptBuilder promptBuilder = prompt.getPromptBuilder();
 
                 promptBuilder.createListPrompt().name("whatToDo").message("What you want to do ").newItem("createNew")
-                        .text("Create New").add().newItem("load").text("Load").add().newItem("exit").text("Exit").add()
-                        .newItem("loadClients").text("Load clients").add().addPrompt();
+                        .text("Create New").add().newItem("load").text("Load").add().newItem("loadClients")
+                        .text("Load clients").add().newItem("exit").text("Exit").add().addPrompt();
 
                 HashMap<String, ? extends PromtResultItemIF> result = prompt.prompt(promptBuilder.build());
                 String choice = ((ListResult) result.get("whatToDo")).getSelectedId();

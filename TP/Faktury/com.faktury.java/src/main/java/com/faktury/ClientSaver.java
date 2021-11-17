@@ -12,7 +12,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class ClientSaver {
-    public static void Saver(Client client, Integer buyerNip) throws DocumentException, FileNotFoundException {
+    public static void Saver(Client client, Long buyerNip) throws DocumentException, FileNotFoundException {
         Document document = new Document();
         File home = FileSystemView.getFileSystemView().getHomeDirectory();
         PdfWriter writer = PdfWriter.getInstance(document,
