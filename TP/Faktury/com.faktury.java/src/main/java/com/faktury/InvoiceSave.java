@@ -13,6 +13,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import org.beryx.textio.TextIO;
 import org.beryx.textio.TextIoFactory;
+/**
+* This is class create pdf include on created invoice in InvoiceCreate.java
+*
+* @param  invoice this is object wchih will be saved in pdf
+*/
 
 public class InvoiceSave {
     public static void Save(Invoice invoice) {

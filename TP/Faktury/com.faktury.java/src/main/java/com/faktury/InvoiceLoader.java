@@ -11,6 +11,12 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
 
+/**
+* 
+*  Load all bouer's inoices. Load is based on NIP.
+* All data is loaded from pdf file
+*/
+
 public class InvoiceLoader {
     static ArrayList<String> InvoiceListToLoad = new ArrayList<>();
 

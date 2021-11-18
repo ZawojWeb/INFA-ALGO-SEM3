@@ -8,9 +8,15 @@ import com.itextpdf.text.DocumentException;
 import org.beryx.textio.TextIO;
 import org.beryx.textio.TextIoFactory;
 
+/**
+* The core class for create the invoice with use inputs. And call save method
+*
+* @param pdfName as suggest this is the name of pdf
+* @param items array of all items wchih bought the customer
+*/
+
 public class InvoiceCreator {
     static ArrayList<Item> items = new ArrayList<>();
-    // public static ArrayList<Client> clients = new ArrayList<>();
     static String sellerName;
     static Long sellerNip;
     static String sellerAdress;

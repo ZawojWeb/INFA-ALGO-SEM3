@@ -16,6 +16,12 @@ import static org.fusesource.jansi.Ansi.ansi;
 import org.beryx.textio.TextIO;
 import org.beryx.textio.TextIoFactory;
 
+/**
+* Core Class wchih include menu.
+* Callback main method of app like :
+* - Create invoice, loads client's invoice and load all clients
+*/
+
 public class App {
 
     public static void main(final String[] args) throws DocumentException {
