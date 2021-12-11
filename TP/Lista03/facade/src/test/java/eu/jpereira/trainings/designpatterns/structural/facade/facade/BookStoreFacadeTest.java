@@ -19,6 +19,7 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
+import eu.jpereira.trainings.designpatterns.structural.facade.DefaultBookStoreFacade;
 import eu.jpereira.trainings.designpatterns.structural.facade.BookstoreFacade;
 import eu.jpereira.trainings.designpatterns.structural.facade.model.Book;
 import eu.jpereira.trainings.designpatterns.structural.facade.model.Customer;
@@ -71,6 +72,13 @@ public class BookStoreFacadeTest extends AbstractClientTest {
 		// impl.setWarehouseService(wharehouseService)
 		// ...
 		// Return an instance of your facade implementation
-		return null;
+		DefaultBookStoreFacade impl = new DefaultBookStoreFacade();
+
+		impl.setBookService(bookService);
+		impl.setCustomerService(customerService);
+		impl.setOrderingService(orderingService);
+		impl.setWharehouseService(warehouseService);
+		impl.setCustomerNotificationService(customerNotificationService);
+		return impl;
 	}
 }
