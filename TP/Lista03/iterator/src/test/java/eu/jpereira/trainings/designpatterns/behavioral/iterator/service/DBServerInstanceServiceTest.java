@@ -40,6 +40,7 @@ import eu.jpereira.trainings.designpatterns.behavioral.iterator.spies.SpyCommand
  */
 public class DBServerInstanceServiceTest {
 
+	// If test return (was <Stopped>) wait some time and try again mvn test
 	@Test
 	public void testServerStatusUnknow() throws CouldNotConnectException, InstanceNotFoundException, GroupNotFoundException {
 		// The SUT
