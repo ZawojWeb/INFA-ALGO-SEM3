@@ -37,18 +37,18 @@ public class EventTest {
 
 	@Test
 	public void testExecuteEvent() throws CouldNotExecuteCommandException, ApplianceCommunicationException {
-		// Event event = createEvent();
-		// event.execute();
-		// verify(clock).start();
+		Event event = createEvent();
+		event.execute();
+		verify(clock).start();
 
-		// verify(toaster).turnOn();
-		// verify(clock).start();
+		verify(toaster).turnOn();
+		verify(clock).start();
 
-		// verify(air).turnOn();
-		// verify(air).start();
+		verify(air).turnOn();
+		verify(air).start();
 
-		// verify(mixer).turnOn();
-		// verify(mixer).start();
+		verify(mixer).turnOn();
+		verify(mixer).start();
 
 	}
 
