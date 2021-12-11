@@ -30,9 +30,15 @@ public class LinkedinChannel implements SocialChannel {
 	 * SocialChannel#deliverMessage(java.lang.String)
 	 */
 	@Override
-	public void deliverMessage(String string) {
+	public void deliverMessage(String message) {
 		// What to do??
-		System.out.println("LinkedIn: " + string);
+		if(message.length() > 300){
+			StringBuilder builder = new StringBuilder();
+			builder.append(message.substring(0, 297));
+			builder.append("...");
+			message = builder.toString();
+		}
+		System.out.println("LinkedIn: " + message);
 
 	}
 

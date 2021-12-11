@@ -30,9 +30,15 @@ public class TwitterChannel implements SocialChannel {
 	 * SocialChannel#deliverMessage(java.lang.String)
 	 */
 	@Override
-	public void deliverMessage(String string) {
+	public void deliverMessage(String message) {
 		// What to do??
-		System.out.println("Twitter: " + string);
+		if(message.length() > 140){
+			StringBuilder builder = new StringBuilder();
+			builder.append(message.substring(0, 137));
+			builder.append("...");
+			message = builder.toString();
+		}
+		System.out.println("Twitter: " + message);
 
 	}
 
