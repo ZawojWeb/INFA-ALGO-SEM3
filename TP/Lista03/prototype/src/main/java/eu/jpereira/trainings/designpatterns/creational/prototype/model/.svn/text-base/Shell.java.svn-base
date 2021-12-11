@@ -38,11 +38,11 @@ public class Shell extends AbstractVehiclePart{
 	public Shell() {
 		super(new Properties());
 	}
-	
-	//TODO: Implement the clone
+
 	@Override
-	public Shell clone() throws CloneNotSupportedException  {
-		return new Shell((Properties) this.partProperties.clone());
+	public VehiclePart clone() throws CloneNotSupportedException  {
+		//TODO: Implement the clone
+		return (VehiclePart)super.clone();
 	}
 
 	/* (non-Javadoc)

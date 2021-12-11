@@ -68,22 +68,12 @@ public class Vehicle implements Cloneable {
 		return match;
 	}
 
-	
-	
-	//TODO: Implement clone
 	@Override
-	public Vehicle clone() throws CloneNotSupportedException {
-		List<VehiclePart> clonedParts = new ArrayList<VehiclePart>();
-
-		for(VehiclePart v : this.parts) {
-			clonedParts.add(v.clone());
-		}
-
-		Vehicle clonedVehicle = new Vehicle();
-
-		clonedVehicle.setParts(clonedParts);
-
-		return clonedVehicle;
+	public Object clone() throws CloneNotSupportedException {
+		//TODO: Implement clone
+		return super.clone();
 	}
+	
+	
 
 }

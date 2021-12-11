@@ -23,35 +23,18 @@ import eu.jpereira.trainings.designpatterns.creational.prototype.VehiclePart;
  * @author jpereira
  *
  */
-public class Shell extends AbstractVehiclePart{
+public abstract class AbstractVehiclePart implements VehiclePart{
+	private Properties partProperties;
 
 	/**
-	 * @param shellProps
+	 * @param properties
 	 */
-	public Shell(Properties shellProps) {
-		super(shellProps);
+	public AbstractVehiclePart(Properties properties) {
+	 this.partProperties = properties;
 	}
 
-	/**
-	 * 
-	 */
-	public Shell() {
-		super(new Properties());
-	}
-	
-	//TODO: Implement the clone
 	@Override
-	public Shell clone() throws CloneNotSupportedException  {
-		return new Shell((Properties) this.partProperties.clone());
+	public VehiclePart clone() throws CloneNotSupportedException  {
+		return (VehiclePart)super.clone();
 	}
-
-	/* (non-Javadoc)
-	 * @see eu.jpereira.trainings.designpatterns.creational.prototype.VehiclePart#is(eu.jpereira.trainings.designpatterns.creational.prototype.model.VehiclePartEnumeration)
-	 */
-	@Override
-	public boolean is(VehiclePartEnumeration type) {
-		
-		return type.equals(VehiclePartEnumeration.SHELL);
-	}
-
 }
