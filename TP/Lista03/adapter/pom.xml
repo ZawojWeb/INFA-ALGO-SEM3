@@ -13,7 +13,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -25,10 +24,9 @@
 			<!-- needs extra dependencies: objenesis & hamcrest -->
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
-			<version>1.9.0-rc1</version>
+			<version>4.1.0</version>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 	<!-- Configure Build Process -->
 	<build>
@@ -39,13 +37,11 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
-
 			<!-- Eclipse plugin to force download of source and JavaDoc jars -->
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
@@ -57,8 +53,5 @@
 				</configuration>
 			</plugin>
 		</plugins>
-
-
-
 	</build>
 </project>

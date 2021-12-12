@@ -20,9 +20,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import eu.jpereira.trainings.designpatterns.creational.factorymethod.Report;
-import eu.jpereira.trainings.designpatterns.creational.factorymethod.ReportData;
-import eu.jpereira.trainings.designpatterns.creational.factorymethod.ReportGenerator;
 public class ReportGeneratorTest extends AbstractReportingTest{
 
 	
@@ -30,7 +27,7 @@ public class ReportGeneratorTest extends AbstractReportingTest{
 	@Test
 	public void testCreateJSONReport() {
 		ReportData reportData = createDummyReportData();
-		ReportGenerator generator = new ReportGenerator();
+		ReportGenerator generator = new JSONReportGenerator();
 		Report generatedReport = generator.generateReport(reportData, "JSON");
 		assertEquals("JSON Report. Name: "+reportData.getName(), generatedReport.getReportContent());
 	}
@@ -39,7 +36,7 @@ public class ReportGeneratorTest extends AbstractReportingTest{
 	@Test
 	public void testCreateXMLReport() {
 		ReportData reportData = createDummyReportData();
-		ReportGenerator generator = new ReportGenerator();
+		ReportGenerator generator = new XMLReportGenerator();
 		Report generatedReport = generator.generateReport(reportData, "XML");
 		assertEquals("XML Report. Name: "+reportData.getName(), generatedReport.getReportContent());
 	}
@@ -47,7 +44,7 @@ public class ReportGeneratorTest extends AbstractReportingTest{
 	@Test
 	public void testCreateHTMLReport() {
 		ReportData reportData = createDummyReportData();
-		ReportGenerator generator = new ReportGenerator();
+		ReportGenerator generator = new HTMLReportGenerator();
 		Report generatedReport = generator.generateReport(reportData, "HTML");
 		assertEquals("HTML Report. Name: "+reportData.getName(), generatedReport.getReportContent());
 	}
@@ -55,7 +52,7 @@ public class ReportGeneratorTest extends AbstractReportingTest{
 	@Test
 	public void testCreatePDFReport() {
 		ReportData reportData = createDummyReportData();
-		ReportGenerator generator = new ReportGenerator();
+		ReportGenerator generator = new PDFReportGenerator();
 		Report generatedReport = generator.generateReport(reportData, "PDF");
 		assertEquals("PDF Report. Name: "+reportData.getName(), generatedReport.getReportContent());
 	}

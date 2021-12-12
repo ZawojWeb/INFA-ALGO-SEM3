@@ -22,11 +22,7 @@ import org.junit.Test;
 
 import eu.jpereira.trainings.designpatterns.behavioral.state.appliance.Appliance;
 import eu.jpereira.trainings.designpatterns.behavioral.state.appliance.ApplianceCommunicationException;
-import eu.jpereira.trainings.designpatterns.behavioral.state.command.Command;
-import eu.jpereira.trainings.designpatterns.behavioral.state.command.CouldNotExecuteCommandException;
-import eu.jpereira.trainings.designpatterns.behavioral.state.command.Event;
-import eu.jpereira.trainings.designpatterns.behavioral.state.command.StartApplianceCommand;
-import eu.jpereira.trainings.designpatterns.behavioral.state.command.TurnOnApplianceCommand;
+
 
 /**
  * @author jpereira

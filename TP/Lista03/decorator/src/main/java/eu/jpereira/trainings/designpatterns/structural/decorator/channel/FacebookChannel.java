@@ -28,9 +28,15 @@ public class FacebookChannel implements SocialChannel {
 	 * @see eu.jpereira.trainings.designpatterns.structural.decorator.channel.SocialChannel#deliverMessage(java.lang.String)
 	 */
 	@Override
-	public void deliverMessage(String string) {
-		//What to do??
-		System.out.println("Facebook: "+string);
+	public void deliverMessage(String message) {
+		// What to do??
+		if(message.length() > 300){
+			StringBuilder builder = new StringBuilder();
+			builder.append(message.substring(0, 297));
+			builder.append("...");
+			message = builder.toString();
+		}
+		System.out.println("Facebook: " + message);
 
 	}
 
