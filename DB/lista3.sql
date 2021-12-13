@@ -55,7 +55,7 @@ DELIMITER $$ CREATE PROCEDURE addPeople() BEGIN DECLARE i int DEFAULT 1;
         SET maxDate = '2003-01-01 00:00:00';
         SET setDate =  TIMESTAMPADD(SECOND, FLOOR(RAND() * TIMESTAMPDIFF(SECOND, minDate, maxDate)), minDate);
 
-        INSERT INTO `db_lista`.`People` (PESEL,name,surrname,birth_day,sex) VALUES (newPESEL, CONCAT('Person', i + 5), CONCAT('Adult', i),setDate ,setSex);
+        INSERT INTO `lista_3`.`People` (PESEL,name,surrname,birth_day,sex) VALUES (newPESEL, CONCAT('Person', i + 5), CONCAT('Adult', i),setDate ,setSex);
         SET i = i + 1;
     END;END;END;END;END;END;
     END WHILE;
@@ -69,4 +69,5 @@ INSERT INTO People (PESEL,name,surrname,birth_day,sex) VALUES ('11111111116', 'P
 ('11111111119', 'Person4', 'Old4','1951-05-04' ,'W'),
 ('11111111121', 'Person5', 'Old5','1949-08-05' ,'M');
 
-SELECT surrname, PESEL FROM People GROUP BY PESEL;
+--  IF there is 55 colmuns that mean threre is not 2 same  pesels
+SELECT surrname, PESEL FROM People GROUP BY PESEL
