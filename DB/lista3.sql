@@ -137,3 +137,76 @@ SELECT surrname, PESEL FROM People GROUP BY PESEL;
 SELECT * FROM People WHERE firstName='Malwina' AND surrName='Zawojska'
 
 ALTER TABLE People AUTO_INCREMENT = 1;
+
+
+INSERT INTO Professions (name,salary_min,salary_max) 
+VALUES ("Polityk", 2000,10000),("Nauczyciel", 2000,4000),("Lekarz", 2000,8000),("Inforamtyk", 10000,400000);
+
+
+
+DELIMITER $$ CREATE PROCEDURE  addJob()
+    DECLARE CURSOR c1 IS
+        SELECT person_id, birth_day, sex FROM People; 
+    BEGIN DECLARE minSalary INT;
+    SET minS
+    BEGIN
+        OPEN c1;
+        LOOP
+            FETCH c1 INTO person_id,birth_day,sex
+            IF (c1 = NULL )THEN
+                LEAVE LOOP;
+            END IF;
+            
+            IF (YEAR(birth_day) < YEAR(CURDATE() - INTERVAL 18 YEARS ) AND YEAR(birth_day) >  YEAR(CURDATE() - INTERVAL 60 YEARS )   sex = "W" ) THEN
+                INSERT INTO `lista_3`.`Workers` (worker,profession_id,salary) VALUES (person_id,firstName , surrName,setDate ,setSex);
+        END LOOP;
+        CLOSE c1;
+    END;
+DELIMITER;
+
+DELIMITER $$ CREATE PROCEDURE  addJob()
+    BEGIN
+        DECLARE p_id, p_pesel, p_firstName, p_lastName, p_birthDay, p_sex, profession_id, salary,salaryMin,salaryMax VARCHAR(30);
+        DECLARE addJobCursor CURSOR FOR SELECT * FROM People WHERE (YEAR(birth_day) <= YEAR(CURDATE() - INTERVAL 18 YEAR));
+
+        OPEN addJobCursor;
+        FETCH addJobCursor INTO p_id, p_pesel, p_firstName, p_lastName, p_birthDay, p_sex;
+        WHILE p_id IS NOT NULL DO
+            IF p_sex = "M"THEN
+                IF (YEAR(p_birthDay) <=YEAR(CURDATE() - INTERVAL 65 YEAR)) THEN
+                    SET profession_id = FLOOR(RAND()*3)+1;
+                    SET profession_id = IF(profession_id = 3, 4 , profession_id);
+                    SET salaryMin = (SELECT salary_min FROM Professions WHERE Professions.profession_id = profession_id);
+                    SET salaryMax = (SELECT salary_max FROM Professions WHERE Professions.profession_id = profession_id);
+                    SET salary = salaryMin  + (RAND()*(salaryMax - salaryMin));
+                    INSERT INTO Workers (worker, profession_id, salary) VALUES (p_id,profession_id,salary);
+                ELSE
+                    SET profession_id = FLOOR(RAND()*4)+1;
+                    SET salaryMin = (SELECT salary_min FROM Professions WHERE Professions.profession_id = profession_id);
+                    SET salaryMax = (SELECT salary_max FROM Professions WHERE Professions.profession_id = profession_id);
+                    SET salary = salaryMin  + (RAND()*(salaryMax - salaryMin));
+                    INSERT INTO Workers (worker, profession_id, salary) VALUES (p_id,profession_id,salary);
+                END IF;
+            ELSE
+                 IF (YEAR(p_birthDay) <=YEAR(CURDATE() - INTERVAL 60 YEAR)) THEN
+                    SET profession_id = FLOOR(RAND()*3)+1;
+                    SET profession_id = IF(profession_id = 3, 4 , profession_id);
+                    SET salaryMin = (SELECT salary_min FROM Professions WHERE Professions.profession_id = profession_id);
+                    SET salaryMax = (SELECT salary_max FROM Professions WHERE Professions.profession_id = profession_id);
+                    SET salary = salaryMin  + (RAND()*(salaryMax - salaryMin));
+                    INSERT INTO Workers (worker, profession_id, salary) VALUES (p_id,profession_id,salary);
+                ELSE
+                    SET profession_id = FLOOR(RAND()*4)+1;
+                    SET salaryMin = (SELECT salary_min FROM Professions WHERE Professions.profession_id = profession_id);
+                    SET salaryMax = (SELECT salary_max FROM Professions WHERE Professions.profession_id = profession_id);
+                    SET salary = salaryMin  + (RAND()*(salaryMax - salaryMin));
+                    INSERT INTO Workers (worker, profession_id, salary) VALUES (p_id,profession_id,salary);
+                END IF;
+            END IF;
+            FETCH addJobCursor INTO p_id, p_pesel, p_firstName, p_lastName, p_birthDay, p_sex;
+        END WHILE;
+        CLOSE addJobCursor;
+    END;
+DELIMITER;
+
+call addJob();
