@@ -23,8 +23,6 @@ import eu.jpereira.trainings.designpatterns.behavioral.state.appliance.Appliance
  */
 public abstract class Alarm extends ApplianceEvent {
 
-	private String additionalInfo;
-
 	/**
 	 * @param sourceAppliance
 	 */
@@ -36,7 +34,6 @@ public abstract class Alarm extends ApplianceEvent {
 	 * @param property
 	 */
 	public void setAditionalInfo(String property) {
-		this.additionalInfo= property;
 		
 	}
 
