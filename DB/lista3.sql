@@ -1,12 +1,28 @@
 CREATE Table People (
     person_id int AUTO_INCREMENT,
     PESEL CHAR(11),
-    name VARCHAR(30), 
+    firstName VARCHAR(30), 
     surrname VARCHAR(30),
     birth_day date,
     sex enum('W', 'M'),
     PRIMARY KEY (person_id),
-    CONSTRAINT PeopleConstraint CHECK (PESEL >= 0)
+    CONSTRAINT PESELRR CHECK (LEFT(PESEL, 2) = DATE_FORMAT(birth_day, '%y')),
+    CONSTRAINT PESELMM CHECK (SUBSTR(PESEL,3,2) = IF(YEAR(birth_day) < 2000, DATE_FORMAT(birth_day, '%m'), DATE_FORMAT(birth_day, '%m') + 20 )),
+    CONSTRAINT PESELDD CHECK (SUBSTR(PESEL,5,2) = DATE_FORMAT(birth_day, '%d')),
+    CONSTRAINT PESELPPPP CHECK (SUBSTR(PESEL,10,1) % 2 = IF(sex = 'M', 1, 0) ),
+    CONSTRAINT PESELK CHECK (RIGHT(PESEL,1) = (10 - ( SUBSTR(PESEL,1,1) * 1 +
+                                                                                                             SUBSTR(PESEL,2,1) * 3 +      
+                                                                                                             SUBSTR(PESEL,3,1) * 7 +      
+                                                                                                             SUBSTR(PESEL,4,1) * 9 +      
+                                                                                                             SUBSTR(PESEL,5,1) * 1 +      
+                                                                                                             SUBSTR(PESEL,6,1) * 3 +      
+                                                                                                             SUBSTR(PESEL,7,1) * 7 +      
+                                                                                                             SUBSTR(PESEL,8,1) * 9 +      
+                                                                                                             SUBSTR(PESEL,9,1) * 1 +      
+                                                                                                             SUBSTR(PESEL,10,1) * 3       
+                                                                                                    ) % 10
+                                                                                                ) %10 
+                                                            )
 );
 
 CREATE Table Professions (
@@ -27,47 +43,97 @@ CREATE Table Workers (
     CONSTRAINT WorkersConstraint CHECK (salary >= 0)
 );
 
-INSERT INTO People (PESEL,name,surrname,birth_day,sex) VALUES ('11111111111', 'Person1', 'Young1','2005-01-01' ,'M'),('11111111112', 'Person2', 'Young2','2005-01-02' ,'M'),
-('11111111113', 'Person3', 'Young3','2005-01-03' ,'W'),
-('11111111114', 'Person4', 'Young4','2005-01-04' ,'W'),
-('11111111115', 'Person5', 'Young5','2005-01-05' ,'M');
 
 
-DELIMITER $$ CREATE PROCEDURE addPeople() BEGIN DECLARE i int DEFAULT 1;
-    WHILE i <= 45 do 
-        BEGIN DECLARE newPESEL char(11) ;
-        SET newPESEL = (SELECT FLOOR(RAND() * 99999999999));
-
+DELIMITER $$ CREATE PROCEDURE addPeople(IN count INT, IN minDate DATE, IN maxDate DATE) BEGIN DECLARE i int DEFAULT 1;
+    WHILE i <= count do 
+      
         BEGIN DECLARE WorM int;
         SET WorM = (SELECT FLOOR(RAND()*10) % 2);
-        BEGIN DECLARE setSex varChar(2);
-
+        BEGIN DECLARE setSex varChar(1);
+        BEGIN DECLARE firstName varChar(20);
+        BEGIN DECLARE surrName varChar(20);
         IF WorM = 0 THEN
             SET setSex = 'W';
+            SET firstName = ELT(0.5 + RAND() * 6 , 'Asia', 'Lena', 'Wiktoria', 'Marcela', 'Malwina', 'Basia');
+            SET surrName = ELT(0.5 + RAND() * 6 , 'Kowalska', 'Zawojska', 'Nowak', 'Iksinska', 'Rzezniczek', 'Zozla');
         ELSE
             SET setSex = 'M';
+            SET firstName = ELT(0.5 + RAND() * 6 , 'Kacper', 'Tomasz', 'Bartek', 'Artur', 'Dawid', 'Piotr');
+            SET surrName = ELT(0.5 + RAND() * 6 , 'Zawojski', 'Szwed', 'Grelewski', 'Trzesniewski', 'Kowalski', 'Piotrowski');
         END IF;
 
         BEGIN DECLARE setDate date;
-        BEGIN DECLARE minDate date;
-        BEGIN DECLARE maxDate date;
-        SET minDate = '1963-01-01 00:00:00';
-        SET maxDate = '2003-01-01 00:00:00';
         SET setDate =  TIMESTAMPADD(SECOND, FLOOR(RAND() * TIMESTAMPDIFF(SECOND, minDate, maxDate)), minDate);
 
-        INSERT INTO `lista_3`.`People` (PESEL,name,surrname,birth_day,sex) VALUES (newPESEL, CONCAT('Person', i + 5), CONCAT('Adult', i),setDate ,setSex);
+        BEGIN DECLARE newPESEL char(11) ;
+        SET newPESEL = generatePESEL(setDate,setSex);
+
+        INSERT INTO `lista_3`.`People` (PESEL,firstName,surrname,birth_day,sex) VALUES (newPESEL,firstName , surrName,setDate ,setSex);
         SET i = i + 1;
     END;END;END;END;END;END;
     END WHILE;
 END ; DELIMITER;
 
-call addPeople();
+DELIMITER $$ 
+    CREATE FUNCTION generatePESEL( birth_day DATE, sex  varChar(1)) RETURNS  CHAR(11) DETERMINISTIC 
 
-INSERT INTO People (PESEL,name,surrname,birth_day,sex) VALUES ('11111111116', 'Person1', 'Old','1950-01-11' ,'M'),
-('11111111117', 'Person2', 'Old2','1952-04-23' ,'M'),
-('11111111118', 'Person3', 'Old3','1952-01-12' ,'W'),
-('11111111119', 'Person4', 'Old4','1951-05-04' ,'W'),
-('11111111121', 'Person5', 'Old5','1949-08-05' ,'M');
+        BEGIN DECLARE RR CHAR(2);
+        SET RR = SUBSTRING(LEFT(YEAR(birth_day),4),3,4);
 
---  IF there is 55 colmuns that mean threre is not 2 same  pesels
-SELECT surrname, PESEL FROM People GROUP BY PESEL
+        BEGIN DECLARE MM CHAR(2);
+        IF (YEAR(birth_day) < 2000) THEN
+            SET MM = DATE_FORMAT(birth_day, '%m');
+        ELSEIF (YEAR(birth_day) >= 2000) THEN
+            SET MM = DATE_FORMAT(birth_day, '%m') + 20;
+        END IF;
+
+        BEGIN DECLARE DD CHAR(2);
+        SET DD = DATE_FORMAT(birth_day, '%d');
+
+        BEGIN DECLARE PPPP CHAR(4);
+        IF (sex = 'W') THEN
+            SET PPPP = CONCAT(FLOOR((RAND()*(1000-100))+100),  ELT(0.5 + RAND() * 5 , '0', '2', '4', '6', '8')  );
+        ELSEIF (sex = 'M') THEN
+            SET PPPP = CONCAT(FLOOR((RAND()*(1000-100))+100), ELT(0.5 + RAND() * 5 , '1', '3', '5', '7', '9')   );
+        END IF;
+
+        BEGIN DECLARE K CHAR(1);
+        BEGIN DECLARE i INT;
+        
+        BEGIN DECLARE sum INT;
+        SET sum = 0;
+        SET i = 1;
+        BEGIN DECLARE k_sand CHAR(10);
+        SET k_sand = CONCAT(RR,MM,DD,PPPP);
+
+        WHILE i <= 10 DO
+           IF( ELT(i, '1', '3', '7', '9', '1', '3', '7', '9','1','3') * SUBSTRING(k_sand, i,1) > 10 ) THEN
+                SET sum = sum + SUBSTRING( (ELT(i, '1', '3', '7', '9', '1', '3', '7', '9','1','3') * SUBSTRING(k_sand, i,1)),2,2);
+            ELSE
+                SET sum = sum + ((ELT(i, '1', '3', '7', '9', '1', '3', '7', '9','1','3') * SUBSTRING(k_sand, i,1)));
+            END IF;
+            SET i = i+1;
+        END WHILE;
+
+        IF (sum >= 10) THEN
+            SET sum = SUBSTRING(sum,2,1);
+        END IF;
+
+        SET K = (10 - sum) % 10;
+        BEGIN DECLARE genPESEL CHAR(11);
+        SET genPESEL = CONCAT(RR,MM,DD,PPPP,K);
+    RETURN genPESEL;
+    END;END;END;END;END;END;END;END;END;
+DELIMITER;
+
+SELECT generatePESEL('2011-04-28', 'W');
+
+
+call addPeople(45,'2003-01-01','1954-01-01');
+call addPeople(5,'2021-01-01','2004-01-01');
+call addPeople(5,'1954-01-01','1930-01-01');
+SELECT surrname, PESEL FROM People GROUP BY PESEL;
+SELECT * FROM People WHERE firstName='Malwina' AND surrName='Zawojska'
+
+ALTER TABLE People AUTO_INCREMENT = 1;
