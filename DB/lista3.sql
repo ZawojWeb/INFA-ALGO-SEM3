@@ -210,3 +210,13 @@ DELIMITER $$ CREATE PROCEDURE  addJob()
 DELIMITER;
 
 call addJob();
+
+
+
+
+
+-- Zad4
+
+PREPARE statment FROM 'SELECT COUNT(*) FROM People p JOIN Workers w ON p.person_id = w.worker JOIN Professions pro ON pro.profession_id = w.profession_id  WHERE p.sex LIKE \'W\' AND pro.name like ?';
+SET @a = 'Programista';
+EXECUTE statment USING @a; -- 5
