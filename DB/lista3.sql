@@ -143,27 +143,6 @@ INSERT INTO Professions (name,salary_min,salary_max)
 VALUES ("Polityk", 2000,10000),("Nauczyciel", 2000,4000),("Lekarz", 2000,8000),("Inforamtyk", 10000,400000);
 
 
-
-DELIMITER $$ CREATE PROCEDURE  addJob()
-    DECLARE CURSOR c1 IS
-        SELECT person_id, birth_day, sex FROM People; 
-    BEGIN DECLARE minSalary INT;
-    SET minS
-    BEGIN
-        OPEN c1;
-        LOOP
-            FETCH c1 INTO person_id,birth_day,sex
-            IF (c1 = NULL )THEN
-                LEAVE LOOP;
-            END IF;
-            
-            IF (YEAR(birth_day) < YEAR(CURDATE() - INTERVAL 18 YEARS ) AND YEAR(birth_day) >  YEAR(CURDATE() - INTERVAL 60 YEARS )   sex = "W" ) THEN
-                INSERT INTO `lista_3`.`Workers` (worker,profession_id,salary) VALUES (person_id,firstName , surrName,setDate ,setSex);
-        END LOOP;
-        CLOSE c1;
-    END;
-DELIMITER;
-
 DELIMITER $$ CREATE PROCEDURE  addJob()
     BEGIN
         DECLARE p_id, p_pesel, p_firstName, p_lastName, p_birthDay, p_sex, profession_id, salary,salaryMin,salaryMax VARCHAR(30);
@@ -219,4 +198,4 @@ call addJob();
 
 PREPARE statment FROM 'SELECT COUNT(*) FROM People p JOIN Workers w ON p.person_id = w.worker JOIN Professions pro ON pro.profession_id = w.profession_id  WHERE p.sex LIKE \'W\' AND pro.name like ?';
 SET @a = 'Programista';
-EXECUTE statment USING @a; -- 5
+EXECUTE statment USING @a; -- Return 5
