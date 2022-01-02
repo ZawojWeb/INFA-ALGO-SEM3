@@ -1,6 +1,6 @@
 # Zadania na laboratoria
 
-## Asis - Architektóra systemów i system 
+## Asis - Architektóra systemów i system
 
 ## Tp - Technologie programowania
 
