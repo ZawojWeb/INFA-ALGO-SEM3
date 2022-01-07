@@ -1,0 +1,10 @@
+com\faktury\InvoiceLoader.class
+com\faktury\ClientsLoader.class
+com\faktury\InvoiceCreator.class
+com\faktury\InvoiceSave.class
+com\faktury\Folder.class
+com\faktury\Client.class
+com\faktury\Invoice.class
+com\faktury\ClientSaver.class
+com\faktury\App.class
+com\faktury\Item.class
