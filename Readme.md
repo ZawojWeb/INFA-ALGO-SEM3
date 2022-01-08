@@ -16,4 +16,7 @@
   Goals:
   - Demonstrate basic aspects of database systems and data handling
   - Practical exercises on the basic aspects of databases
-  -  Implementation of basic database aspects in the selected database system
+  - Implementation of basic database aspects in the selected database system
+
+## Prob - Metody Probabilistyczne i Statystyka (eng. Probabilistic Methods and Statistics)
+ There is just one project which calculate one statistic problem.
