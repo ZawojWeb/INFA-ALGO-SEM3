@@ -6,7 +6,6 @@ function App() {
   const [circles, setCircles] = useState([])
 
   const [howMany, setHowMany] = useState(0)
-  const [isLoading, setisLoading] = useState()
 
   const inputHandler = (e) => {
     setHowMany(e.target.value)
@@ -14,27 +13,18 @@ function App() {
 
   const rerender = async (e) => {
     e.preventDefault()
-    if (isLoading) return
-    setisLoading(true)
-    await new Promise((resolve) => setTimeout(resolve, 200))
-    const newArray = Array.from({ length: howMany }).map((_, i) => <SingleCircle positionX={Math.random() * 1000} positionY={Math.random() * 1000} key={i} />)
-    setCircles(newArray)
-    setisLoading(false)
-  }
 
-  useEffect(() => {
-    setisLoading(false)
-  }, [circles])
+    const newArray = Array.from({ length: howMany }).map((_, i) => <SingleCircle positionX={Math.random() * 1000} positionY={Math.random() * 1000} key={i} />)
+    setCircles([...circles, newArray])
+  }
 
   return (
     <div className='App'>
       <header className='App-header'>
         <form className='form' style={{ display: "flex", alignItems: "center" }}>
-          {isLoading && <ReactLoading type='spinningBubbles' color={"#ffffff"} height={20} width={20} />}
           <input type='text' value={howMany} onChange={inputHandler} />
           <button
             onClick={(e) => {
-              setisLoading(true)
               rerender(e)
             }}
             type='submit'
