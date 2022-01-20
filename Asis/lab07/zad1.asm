@@ -1,21 +1,21 @@
 SECTION .data
-    number:         dd      908, 0h
-    avilableChars:  db      "0123456789abcdef",0h
-    dummpData:      db      "0",0h
+    number:         dd      123456, 0
+    avilableChars:  db      "0123456789abcdef",0
+    dummpData:      db      "0",0
+
 SECTION .text
 global  _start
  
 _start:
-
     mov r8, 0
-    mov rax, [ number]
+    mov rax, [number]
     cmp rax, 0
     je endProgram
     jmp while
     
 
 ;while(number != 0){
-    ; rax / 16 -> push rdx
+
 while:
     mov rsi, 16
     xor rdx, rdx
@@ -37,13 +37,13 @@ print:
     pop rdx
     mov rax, rdx
 
-    mov     rax, [avilableChars + rax]
-    mov     [dummpData], rax
-    mov     rcx, dummpData
-    mov     rdx, 1
-    mov     rbx, 1
-    mov     rax, 4
-    int     80h
+    mov rax, [avilableChars + rax]
+    mov [dummpData], rax
+    mov rcx, dummpData
+    mov rdx, 1
+    mov rbx, 1
+    mov rax, 4
+    int 0x80
 
 
     dec r8
@@ -54,9 +54,18 @@ print:
 
 
 endProgram:
-    mov     rbx, 0
-    mov     rax, 1
-    int     80h
+    
+    mov [dummpData], byte 10
+    mov rcx, dummpData
+    mov rdx, 1
+    mov rbx, 1
+    mov rax, 4
+    int 0x80
+
+    mov rbx, 0
+    mov rax, 1
+    int 0x80
+
 
 
 
